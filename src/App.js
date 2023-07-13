@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import MainContent from "./components/main-content/MainContent";
+import Users from "./components/Users/Users";
 import "./App.css";
 import "./assets/css/root.css";
 
@@ -23,6 +24,7 @@ const App = () => {
         settheme={settheme}
       />
       <MainContent userData={userData} />
+      <Users/>
       <Footer brandName={brandName} />
     </div>
   );
