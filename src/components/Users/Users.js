@@ -5,7 +5,9 @@ import {useState,useEffect} from "react"
 
 
 const Users = () => {
-    const [users,setUsers]=useState([])
+    const [users,setUsers]=useState([]);
+    
+
     const getData=async()=>{
         const data=await fetch("https://reqres.in/api/users");
         const json=await data.json();
@@ -19,7 +21,7 @@ const Users = () => {
 
   return (
     <div>
-      <h1 style={{color:"red",marginTop:"15px"}}>UsersData</h1>
+    <h2>Users Data</h2>
       <table className="table">
         <thead>
             <tr>
