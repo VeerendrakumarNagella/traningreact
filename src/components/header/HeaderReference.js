@@ -7,8 +7,8 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.userData = {
-      name: "Veerendra Kumar",
-      age: "29",
+      name: "Kalyani Rayavarapu",
+      age: "26",
     };
 
     this.state = {
