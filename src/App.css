@@ -17,3 +17,33 @@ footer {
 .main-content {
   min-height: calc(100vh - 100px);
 }
+.keypad {
+  width: 20%;
+  height: 60px;
+  font-size: 30px;
+  font-weight: 1000
+}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
+*{
+  font-family: 'Open Sans', sans-serif;
+}
+.container input {
+  height: 50px;
+  width: 250px;
+  text-align: right;
+  font-size: x-large;
+  font-weight: 800;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px hotpink;
+}
+.keypad button {
+  margin: 5px;
+  width: 20%;
+  height: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px greenyellow;
+}
+.highlight {
+  background-color: rgb(22, 97, 72);
+}
