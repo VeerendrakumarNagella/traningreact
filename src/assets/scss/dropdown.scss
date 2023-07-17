@@ -1,0 +1,15 @@
+.dropdown-container {
+  max-width: 120px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightsteelblue;
+  background-color: #fff;
+
+  a {
+    padding: 7px 15px;
+
+    &:hover {
+      background: lightgray;
+    }
+  }
+}

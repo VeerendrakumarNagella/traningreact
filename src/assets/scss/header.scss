@@ -1,0 +1,147 @@
+@import "./variables.scss";
+
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header.content-wrapper {
+  border-bottom: 1px solid;
+}
+
+.content-wrapper.dark {
+  color: $color-white;
+
+  a {
+    color: $color-white;
+  }
+
+  .icon-image {
+    color: $dark-image-color;
+  }
+
+  .right-content {
+    .search-bar {
+      input {
+        border-color: $color-white;
+      }
+    }
+
+    .nav-items {
+      .nav-item {
+        margin: 0 10px;
+        cursor: pointer;
+        text-decoration: none;
+        padding: 7px 10px;
+        border-radius: 25px;
+        background: transparent;
+        color: $color-white;
+
+        &:hover {
+          background-color: #302a2a;
+        }
+      }
+    }
+  }
+}
+
+.content-wrapper.light {
+  background-color: $color-white;
+  color: $color-black;
+
+  .icon-image {
+    color: $light-image-color;
+  }
+
+  .right-content {
+    .search-bar {
+      input {
+        border-color: $color-black;
+      }
+    }
+
+    .nav-items {
+      .nav-item {
+        color: $color-black;
+        background: transparent;
+      }
+    }
+  }
+}
+
+.content-wrapper {
+  .hero-section {
+    @extend %flex-center;
+
+    a {
+      @extend %flex-center;
+    }
+
+    img {
+      height: 30px;
+      margin-right: 5px;
+    }
+
+    .hero-image {
+      width: 30px;
+      height: auto;
+      margin-right: 7px;
+    }
+  }
+
+
+
+  .right-content {
+    position: relative;
+    @extend %flex-center;
+
+    .search-bar {
+      input {
+        padding: 7px 20px;
+        border-radius: 20px;
+        min-width: 400px;
+        border: 1px solid;
+      }
+    }
+
+    .nav-items {
+      @extend %flex-center;
+
+      .nav-item {
+        margin: 0 10px;
+        cursor: pointer;
+        text-decoration: none;
+        padding: 7px 10px;
+        border-radius: 25px;
+
+        &:hover {
+          background-color: lightgray;
+        }
+      }
+
+      .click-item {
+        padding: 0 !important;
+        margin: 0 10px !important;
+
+        &:hover {
+          background-color: transparent !important;
+        }
+
+        .icon {
+          height: 25px;
+          width: 25px;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+    }
+
+    .dropdown-container {
+      position: absolute;
+      right: 10px;
+      top: 42px;
+      z-index: 9;
+    }
+  }
+}

@@ -1,11 +1,17 @@
+import { useState, useEffect, useRef } from "react";
 import { ReactComponent as HeroIcon } from "../../assets/images/logo.svg";
-import { ReactComponent as DrakThemeIcon } from "../../assets/images/dark-theme.svg";
+import { ReactComponent as DarkThemeIcon } from "../../assets/images/dark-theme.svg";
 import { ReactComponent as LightThemeIcon } from "../../assets/images/light-theme.svg";
 // import DrakThemeIcon from "../../assets/images/dark-theme.svg";
 // import LightThemeIcon from "../../assets/images/light-theme.svg";
 import UserIcon from "../../assets/images/user.png";
+import Dropdown from "../common/Dropdown";
+import { Link } from "react-router-dom";
 
-const Header = ({ theme, settheme }) => {
+const Header = ({ theme, settheme, setsearchText }) => {
+  const [text, settext] = useState("");
+  const [isOpen, setisOpen] = useState(false);
+  const ref = useRef(null);
   // const changeTheme = () => {
   //   if (theme === "light") {
   //     settheme("dark");
@@ -14,32 +20,69 @@ const Header = ({ theme, settheme }) => {
   //   }
   // };
 
+  const handleChange = (e) => {
+    settext(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    if (e.keyCode === 13) {
+      setsearchText(e.target.value);
+    }
+  };
+
+  const handleClick = () => {
+    setisOpen(!isOpen);
+  };
+
+  const handleClickOutside = (event) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setisOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
+
   return (
     <header className={`header content-wrapper ${theme}`}>
       <div className="hero-section">
-        <a href="/">
+        <Link to="/">
           {/* <img src={HeroIcon} alt="hero" /> */}
           <HeroIcon className="hero-image icon-image" />
           <span className="hero-title">React</span>
-        </a>
+        </Link>
       </div>
       <div className="right-content">
         <div className="search-bar">
-          <input type="search" placeholder="Search.." />
+          <input
+            type="search"
+            placeholder="Search.."
+            value={text}
+            onChange={handleChange}
+            onKeyDown={handleSubmit}
+            // onChange={function (e) {
+            //   setsearchText(e.target.value);
+            // }}
+            // onChange={(e) => setsearchText(e.target.value)}
+          />
         </div>
         <div className="nav-items">
-          <a href="https://react-dev/learn" className="nav-item link-item">
+          <Link to="/learn" className="nav-item link-item">
             Learn
-          </a>
-          <a href="https://react-dev/reference" className="nav-item link-item">
+          </Link>
+          <Link to="/reference" className="nav-item link-item">
             Reference
-          </a>
-          <a href="https://react-dev/community" className="nav-item link-item">
+          </Link>
+          <Link to="/community" className="nav-item link-item">
             Community
-          </a>
-          <a href="https://react-dev/blog" className="nav-item link-item">
+          </Link>
+          <Link to="/blog" className="nav-item link-item">
             Blog
-          </a>
+          </Link>
           {theme === "light" ? (
             <button
               className="nav-item click-item"
@@ -56,13 +99,18 @@ const Header = ({ theme, settheme }) => {
               onClick={() => settheme("light")}
             >
               {/* <img src={DrakThemeIcon} alt="dark-theme" /> */}
-              <DrakThemeIcon className="icon icon-image" />
+              <DarkThemeIcon className="icon icon-image" />
             </button>
           )}
-          <button className="nav-item click-item">
+          <button className="nav-item click-item" onClick={handleClick}>
             <img src={UserIcon} alt="user" className="icon" />
           </button>
         </div>
+        {isOpen && (
+          <div ref={ref}>
+            <Dropdown />
+          </div>
+        )}
       </div>
     </header>
   );

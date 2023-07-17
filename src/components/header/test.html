@@ -1,0 +1,34 @@
+<div id="p" onclick="pClick()">
+  <div id="p1" onclick="piClick()">
+    <button id="c1">Child 1</button>
+    <button id="c2">Child 2</button>
+    <button id="c3">Child 3</button>
+  </div>
+</div>
+
+<script>
+  // document.addEventListener("click", function , useCapture => true(event capturing) / false (event bubbling))
+
+  // event capturing
+  document.getElementById("c2").addEventListener("click", () => {
+    console.log("test 2");
+  }, true)
+  document.getElementById("p1").addEventListener("click", () => {
+    console.log("inner parent");
+  }, true)
+  document.getElementById("p").addEventListener("click", () => {
+    console.log("outer parent");
+  }, true)
+
+
+  // event bubbling
+  //  document.getElementById("c2").addEventListener("click", () => {
+  //  console.log("test 2");
+  //  }, true)
+  //  document.getElementById("p1").addEventListener("click", () => {
+  //  console.log("inner parent");
+  //  }, true)
+  //  document.getElementById("p").addEventListener("click", () => {
+  //  console.log("outer parent");
+  //  }, true)
+</script>
