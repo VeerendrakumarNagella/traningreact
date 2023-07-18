@@ -12,7 +12,7 @@ const MainContent = (props) => {
 
   return (
     <div>
-      <div style={{ color: "pink", padding: "10px", marginLeft: "30px" }}>
+      <div style={{ color: "green", padding: "10px", marginLeft: "30px" }}>
         <h2 id="demo">
           This is {titleName} {headerName} is coming from the user{" "}
           {props.userData.name} and the age is {props.userData.age}
