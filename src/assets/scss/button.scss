@@ -4,12 +4,20 @@
   color: $color;
 }
 
-button {
+button,
+.btn {
   @include theme($theme: teal);
   padding: 7px 13px;
   color: white;
   border: none;
   margin: 0 1px;
+  cursor: pointer;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  max-width: 300px;
 }
 
 .info {

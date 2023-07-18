@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 const Dropdown = () => {
   return (
     <div className="dropdown-container">
-      <a href="/">Profile</a>
-      <a href="/">Dashboard</a>
-      <a href="/">Account</a>
-      <a href="/">Logout</a>
+      <Link to="/profile">Profile</Link>
+      <Link to="/dashboard">Dashboard</Link>
+      <Link to="/account">Account</Link>
+      <Link to="/logout">Logout</Link>
     </div>
   );
 };
