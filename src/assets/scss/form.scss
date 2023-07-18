@@ -14,7 +14,7 @@
     }
 
     .form-item-element {
-      padding: 7px 13px;
+      padding: 10px 13px;
       border-radius: 7px;
       border: 1.2px solid gray;
     }
@@ -26,6 +26,15 @@
 
   .form-item.radio div label {
     margin-right: 20px;
+  }
+
+  .form-item.btn-group {
+    flex-direction: row;
+
+    & > * {
+      flex-grow: 1;
+      max-width: calc(50% - 10px);
+    }
   }
 }
 

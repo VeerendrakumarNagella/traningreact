@@ -7,7 +7,7 @@
 button,
 .btn {
   @include theme($theme: teal);
-  padding: 7px 13px;
+  padding: 10px 13px;
   color: white;
   border: none;
   margin: 0 1px;
@@ -30,4 +30,10 @@ input[type="reset"] {
 
 .success {
   @include theme($theme: DarkGreen);
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
