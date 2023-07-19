@@ -102,15 +102,13 @@ const Header = ({ theme, settheme, setsearchText }) => {
               <DarkThemeIcon className="icon icon-image" />
             </button>
           )}
-          <button className="nav-item click-item" onClick={handleClick}>
-            <img src={UserIcon} alt="user" className="icon" />
-          </button>
-        </div>
-        {isOpen && (
           <div ref={ref}>
-            <Dropdown />
+            <button className="nav-item click-item" onClick={handleClick}>
+              <img src={UserIcon} alt="user" className="icon" />
+            </button>
+            {isOpen && <Dropdown />}
           </div>
-        )}
+        </div>
       </div>
     </header>
   );

@@ -1,0 +1,44 @@
+.my-form {
+  margin: 20px 0;
+  border: 1px solid lightgray;
+  padding: 20px;
+  border-radius: 8px;
+
+  .form-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    & > * {
+      margin: 5px 0;
+    }
+
+    .form-item-element {
+      padding: 10px 13px;
+      border-radius: 7px;
+      border: 1.2px solid gray;
+    }
+  }
+
+  .form-item.radio div label input {
+    margin: 0 9px;
+  }
+
+  .form-item.radio div label {
+    margin-right: 20px;
+  }
+
+  .form-item.btn-group {
+    flex-direction: row;
+
+    & > * {
+      flex-grow: 1;
+      max-width: calc(50% - 10px);
+    }
+  }
+}
+
+.signup-page {
+  max-width: 400px;
+  margin: 20px auto;
+}
