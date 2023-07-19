@@ -24,6 +24,7 @@ button {
   background-color: teal;
   border: none;
   margin: 0 1px;
+  border-radius: 3px;
 }
 
 footer {
