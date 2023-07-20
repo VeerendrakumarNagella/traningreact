@@ -19,8 +19,8 @@ const MainContent = (props) => {
     <div className="home-content">
       <div>
         <h2 id="demo">
-          This is {titleName} is coming from the user {props?.userData?.name}{" "}
-          and the age is {props?.userData?.age}
+          This is {titleName} is coming from the user narendra{" "}
+          {props?.userData?.name} and the age is {props?.userData?.age}
         </h2>
       </div>
       <br />
