@@ -11,7 +11,7 @@ const PageNotFound = () => {
 
   return (
     <section className="error-page">
-      <h2>Page Not found 403</h2>
+      <h2>Page Not Found 403</h2>
       <br />
       {/* <Link to="/">Back to Home</Link> */}
       <button onClick={handleGoBack}>Back to Home</button>
