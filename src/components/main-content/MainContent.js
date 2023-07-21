@@ -1,59 +1,102 @@
-import { useState /* useRef */ } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import ButtonClickWithHoc from "../common/hoc/ButtonClickWithHoc";
+import ButtonHoverWithHoc from "../common/hoc/ButtonHoverWithHoc";
 
 const MainContent = (props) => {
-  const [titleName, setTitleName] = useState("Main section");
-  // const [userName, setUserName] = useState("");
-  // const userNameRef = useRef();
+  const [userData, setuserData] = useState([]);
 
-  const handleClick = () => {
-    setTitleName("Clicked Section");
-    // const val = userNameRef;
-    // console.log(val.current.value);
+  // useEffect(() => {
+  //   fetch("https://jsonplaceholder.typicode.com/users")
+  //     .then((res) => res.json())
+  //     .then((data) => setuserData(data))
+  //     .catch((err) => console.log("error", err));
+  // }, []);
+
+  useEffect(() => {
+    // axios
+    //   .get("https://jsonplaceholder.typicode.com/users")
+    //   .then((res) => setuserData(res.data))
+    //   .catch((err) => console.log(err));
+    // axios("https://jsonplaceholder.typicode.com/users")
+    //   .then((res) => setuserData(res.data))
+    //   .catch((err) => console.log(err));
+    // axios({
+    //   method: "get",
+    //   url: "https://jsonplaceholder.typicode.com/users",
+    // })
+    //   .then((res) => setuserData(res.data))
+    //   .catch((err) => console.log(err));
+
+    getUsersData();
+    // throw new Error("Error");
+  }, []);
+
+  const getUsersData = async () => {
+    try {
+      const res = await axios({
+        method: "get",
+        url: "https://jsonplaceholder.typicode.com/users",
+      });
+      setuserData(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  // const handleChange = (e) => {
-  //   setUserName(e.target.value);
-  // };
+  const handleClick = async () => {
+    try {
+      await axios({
+        method: "post",
+        url: "https://jsonplaceholder.typicode.com/todos",
+        data: { title: "my title", completed: true },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="home-content">
-      <div>
-        <h2 id="demo">
-          This is {titleName} is coming from the user {props?.userData?.name}{" "}
-          and the age is {props?.userData?.age}
-        </h2>
-      </div>
       <br />
-      <p>
-        Your search term is{" "}
-        <strong>
-          <em>{props?.searchText}</em>
-        </strong>
-      </p>
-      <br />
-      <button className="info" onClick={handleClick}>
-        Change Name
-      </button>
-      <button className="alert" onClick={handleClick}>
-        Change Name
-      </button>
-      <button className="success" onClick={handleClick}>
-        Change Name
-      </button>
-      <button onClick={handleClick}>Change Name</button>
+      <button onClick={handleClick}>Display Table</button>
       <br />
       <br />
-      {/* <input
-        type="text"
-        id="userName"
-        // value={userName}
-        // onChange={handleChange}
-        ref={userNameRef}
-        placeholder="User..."
-      />
+      <ButtonClickWithHoc />
+
       <br />
       <br />
-      <h3>{userName}</h3> */}
+      <ButtonHoverWithHoc />
+      <br />
+      <br />
+      <table>
+        <thead>
+          <tr>
+            <th>S. No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Company</th>
+          </tr>
+        </thead>
+        <tbody>
+          {userData.length ? (
+            userData.map((user, index) => {
+              return (
+                <tr key={user.id}>
+                  <td>{index + 1}</td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.company.name}</td>
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <td colSpan={4}>No users data available</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 };
