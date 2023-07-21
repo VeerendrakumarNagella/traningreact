@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import PageNotFound from "./PageNotFound";
 import Signup from "../auth/Signup";
 import Login from "../auth/Login";
+import ErrorBoundary from "./ErrorBoundary";
 
 const MainContent = lazy(() => import("../main-content/MainContent"));
 const Learn = lazy(() => import("../navigation-pages/Learn"));
@@ -24,7 +25,11 @@ const RouterConfig = ({ userData, searchText }) => {
       <Routes>
         <Route
           path="/"
-          element={<MainContent userData={userData} searchText={searchText} />}
+          element={
+            <ErrorBoundary>
+              <MainContent userData={userData} searchText={searchText} />
+            </ErrorBoundary>
+          }
         />
         <Route path="/learn" element={<Learn />} />
         <Route path="/blog" element={<Blog />} />

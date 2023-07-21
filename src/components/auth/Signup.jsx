@@ -79,10 +79,10 @@ const Signup = () => {
         fullNameRef,
         fullNameError,
         "Please enter your fullname"
-      );
-    } else {
-      console.log(user);
-    }
+        );
+      } else {
+        console.log(user);
+      }
   };
 
   const handleCancel = (e) => {

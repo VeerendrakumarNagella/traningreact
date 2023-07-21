@@ -6,6 +6,7 @@ import "./assets/css/root.css";
 import "./assets/scss/index.scss";
 import { BrowserRouter } from "react-router-dom";
 import RouterConfig from "./components/common/RouterConfig";
+import ErrorBoundary from "./components/common/ErrorBoundary";
 
 const App = () => {
   const brandName = "Logo Name";
@@ -20,18 +21,24 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className={`App ${theme}`}>
-        <Header
-          brandName={brandName}
-          getUserData={getUserData}
-          theme={theme}
-          settheme={settheme}
-          searchText={searchText}
-          setsearchText={setsearchText}
-        />
+        <ErrorBoundary>
+          <Header
+            brandName={brandName}
+            getUserData={getUserData}
+            theme={theme}
+            settheme={settheme}
+            searchText={searchText}
+            setsearchText={setsearchText}
+          />
+        </ErrorBoundary>
         <section className="main-content">
-          <RouterConfig userData={userData} searchText={searchText} />
+          <ErrorBoundary>
+            <RouterConfig userData={userData} searchText={searchText} />
+          </ErrorBoundary>
         </section>
-        <Footer brandName={brandName} />
+        <ErrorBoundary>
+          <Footer brandName={brandName} />
+        </ErrorBoundary>
       </div>
     </BrowserRouter>
   );
