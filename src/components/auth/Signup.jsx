@@ -59,6 +59,11 @@ const Signup = () => {
   } = userError;
 
   const fullNameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const phoneNumberRef = useRef();
+  const ageRef = useRef();
+
 
   const getValidationErrorFocus = (
     ref,
@@ -79,10 +84,62 @@ const Signup = () => {
         fullNameRef,
         fullNameError,
         "Please enter your fullname"
-        );
-      } else {
-        console.log(user);
-      }
+      );
+    }
+    else if (!email) {
+
+      emailRef.current.focus();
+
+      setuserError({
+
+        ...userError,
+
+        emailError: "This field is required",
+
+      });
+
+    } 
+      else if (!password) {
+
+      passwordRef.current.focus();
+
+      setuserError({
+
+        ...userError,
+
+        passwordError: "This field is required",
+
+      });
+
+    } 
+      else if (!phoneNumber) {
+
+      passwordError.current.focus();
+
+      setuserError({
+
+        ...userError,
+
+        phoneNumberError: "This field is required",
+
+      });
+    } 
+      else if (!age) {
+
+      ageRef.current.focus();
+
+      setuserError({
+
+        ...userError,
+
+        ageRef: "This field is required",
+
+      });
+
+    } 
+    else {
+      console.log(user);
+    }
   };
 
   const handleCancel = (e) => {
@@ -133,6 +190,99 @@ const Signup = () => {
         });
       }
     }
+    if (name === "email") {     //changes start
+      if (!value) {
+        setuserError({
+          ...userError,
+          emailError: "Please enter your valid email",
+        });
+      } else if (!/\S+@\S+\.\S+/.test(value)) {
+        setuserError({
+          ...userError,
+          emailError: "have the format of example@mail.com",
+        });
+      }
+      else {
+        setuserError({
+          ...userError,
+          emailError: "",
+        });
+      }
+    }
+     if (name === "password") {     //changes 
+      if (!value) {
+        setuserError({
+          ...userError,
+          passwordError: "Please enter your valid password ",
+        });
+      } else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$/.test(value)) {
+        setuserError({
+          ...userError,
+          passwordError: "minLength: 8, minLowercase: 1,minUppercase: 1, minNumbers: 1, minSymbols: 1",
+            
+        });
+      }
+      else {
+        setuserError({
+          ...userError,
+          passwordError: "",
+        });
+      }
+    }
+   if (name === "phoneNumber") {     //changes 
+      if (!value) {
+        setuserError({
+          ...userError,
+          phoneNumberError: "Please enter your valid phone number ",
+        });
+      } else if (!/^\+?[0-9-]+$/.test(value)) {
+        setuserError({
+          ...userError,
+          phoneNumberError: "have the format of  (0-9) 10 digits   ",
+        });
+      }
+        else if (!value.length<10) {
+        setuserError({
+          ...userError,
+          phoneNumberError: "we need to enter minimum 10 digits  ",
+        });
+      }
+        else if (!value.length>10) {
+        setuserError({
+          ...userError,
+          phoneNumberError: "enter only 10 digits   ",
+        });
+          }
+      else {
+        setuserError({
+          ...userError,
+          phoneNumberError: "",
+        });
+      }
+    } 
+
+    if (name === "age") {
+      if (!value) {
+        setuserError({
+          ...userError,
+          ageError: "Please enter your age ",
+        });
+      
+      }
+      else if (!/^(1[89]|[2-9]\d)$/.test(value)) {
+        setuserError({
+          ...userError,
+          ageError: "  Age is not in nagitive value  ",
+        });
+      }
+      
+     else {
+        setuserError({
+          ...userError,
+          ageError: "",
+        });
+      }
+    }
   };
 
   return (
@@ -167,6 +317,9 @@ const Signup = () => {
             name="email"
             value={email}
             onChange={handleChange}
+            ref={
+              emailRef
+            }
           />
           {emailError && <p style={{ color: "red" }}>{emailError}</p>}
         </div>
@@ -182,6 +335,7 @@ const Signup = () => {
             name="password"
             value={password}
             onChange={handleChange}
+            ref={passwordRef}
           />
           {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
         </div>
@@ -197,6 +351,7 @@ const Signup = () => {
             name="phoneNumber"
             value={phoneNumber}
             onChange={handleChange}
+            ref={phoneNumberRef}
           />
           {phoneNumberError && (
             <p style={{ color: "red" }}>{phoneNumberError}</p>
@@ -214,6 +369,7 @@ const Signup = () => {
             name="age"
             value={age}
             onChange={handleChange}
+            ref={ageRef}
           />
           {ageError && <p style={{ color: "red" }}>{ageError}</p>}
         </div>
