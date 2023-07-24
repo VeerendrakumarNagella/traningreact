@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo, useContext } from "react";
 import { ReactComponent as HeroIcon } from "../../assets/images/logo.svg";
 import { ReactComponent as DarkThemeIcon } from "../../assets/images/dark-theme.svg";
 import { ReactComponent as LightThemeIcon } from "../../assets/images/light-theme.svg";
@@ -7,8 +7,23 @@ import { ReactComponent as LightThemeIcon } from "../../assets/images/light-them
 import UserIcon from "../../assets/images/user.png";
 import Dropdown from "../common/Dropdown";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../utils/AppContext";
 
-const Header = ({ theme, settheme, setsearchText }) => {
+const Header = ({ settheme, setsearchText, brandName }) => {
+  const theme = useContext(ThemeContext);
+  // console.log("testttt");
+  // const headingName =
+  //   brandName.toLowerCase() === "react"
+  //     ? `${brandName} Library`
+  //     : `${brandName} Language`;
+
+  const headingName = useMemo(() => {
+    // console.log("Use memo calling");
+    return brandName.toLowerCase() === "react"
+      ? `${brandName} Library`
+      : `${brandName} Language`;
+  }, [brandName]);
+
   const [text, settext] = useState("");
   const [isOpen, setisOpen] = useState(false);
   const ref = useRef(null);
@@ -53,7 +68,7 @@ const Header = ({ theme, settheme, setsearchText }) => {
         <Link to="/">
           {/* <img src={HeroIcon} alt="hero" /> */}
           <HeroIcon className="hero-image icon-image" />
-          <span className="hero-title">React</span>
+          <span className="hero-title">{headingName}</span>
         </Link>
       </div>
       <div className="right-content">
