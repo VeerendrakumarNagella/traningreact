@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import ButtonClickWithHoc from "../common/hoc/ButtonClickWithHoc";
 import ButtonHoverWithHoc from "../common/hoc/ButtonHoverWithHoc";
+import { AppContext } from "../utils/AppContext";
 
 const MainContent = (props) => {
+  const searchvalue = useContext(AppContext);
   const [userData, setuserData] = useState([]);
 
   // useEffect(() => {
@@ -59,7 +61,7 @@ const MainContent = (props) => {
   return (
     <div className="home-content">
       <br />
-      <button onClick={handleClick}>Display Table</button>
+      <button onClick={handleClick}>Display Table: {searchvalue}</button>
       <br />
       <br />
       <ButtonClickWithHoc />
