@@ -27,7 +27,11 @@ const RouterConfig = ({ userData, searchText }) => {
           path="/"
           element={
             <ErrorBoundary>
-              <MainContent userData={userData} searchText={searchText} />
+              <MainContent
+                userData={userData}
+                searchText={searchText}
+                name="test"
+              />
             </ErrorBoundary>
           }
         />

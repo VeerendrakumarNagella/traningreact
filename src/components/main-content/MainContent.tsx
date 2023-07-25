@@ -1,10 +1,15 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, FC } from "react";
 import axios from "axios";
 import ButtonClickWithHoc from "../common/hoc/ButtonClickWithHoc";
 import ButtonHoverWithHoc from "../common/hoc/ButtonHoverWithHoc";
 import { AppContext } from "../utils/AppContext";
 
-const MainContent = (props) => {
+interface MainContentProps {
+  userData?: any;
+  searchText?: string;
+}
+
+const MainContent: FC<MainContentProps> = (props) => {
   const searchvalue = useContext(AppContext);
   const [userData, setuserData] = useState([]);
 
@@ -82,7 +87,7 @@ const MainContent = (props) => {
         </thead>
         <tbody>
           {userData.length ? (
-            userData.map((user, index) => {
+            userData.map((user: any, index) => {
               return (
                 <tr key={user.id}>
                   <td>{index + 1}</td>
