@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, FC } from "react";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import "./App.css";
@@ -12,13 +12,13 @@ import BrandContext, {
   ThemeContext,
 } from "./components/utils/AppContext";
 
-const App = () => {
+const App: FC = () => {
   const brandName = "JavaScript";
   const [userData, setuserData] = useState({});
   const [theme, settheme] = useState("light");
   const [searchText, setsearchText] = useState("");
 
-  const getUserData = (user) => {
+  const getUserData = (user: any) => {
     setuserData(user);
   };
 
@@ -32,9 +32,9 @@ const App = () => {
             <ErrorBoundary>
               <Header
                 brandName={brandName}
-                getUserData={getUserData}
+                // getUserData={getUserData}
                 settheme={settheme}
-                searchText={searchText}
+                // searchText={searchText}
                 setsearchText={setsearchText}
               />
             </ErrorBoundary>
