@@ -241,13 +241,13 @@ const Signup = () => {
           phoneNumberError: "have the format of  (0-9) 10 digits   ",
         });
       }
-        else if (!value.length<10) {
+        else if (value.length<10) {
         setuserError({
           ...userError,
           phoneNumberError: "we need to enter minimum 10 digits  ",
         });
       }
-        else if (!value.length>10) {
+        else if (value.length>10) {
         setuserError({
           ...userError,
           phoneNumberError: "enter only 10 digits   ",
@@ -269,13 +269,18 @@ const Signup = () => {
         });
       
       }
+      else if (value>=18) {
+        setuserError({
+          ...userError,
+          ageError: "user age is must be 18 ",
+        });
+      }
       else if (!/^(1[89]|[2-9]\d)$/.test(value)) {
         setuserError({
           ...userError,
           ageError: "  Age is not in nagitive value  ",
         });
       }
-      
      else {
         setuserError({
           ...userError,
